@@ -33,10 +33,10 @@ window {
 	border-color:					@ac;
     border-radius:                  5px;
     height:                         90%;
-	width:							94%;
+	width:							96%;
     location:                       northwest;
     x-offset:                        2%;
-    y-offset:                        50;
+    y-offset:                        5%;
 }
 
 
