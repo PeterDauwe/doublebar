@@ -8,11 +8,21 @@ if [ -f "/tmp/leftwm-theme-down" ]; then
 fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
-# keybindings daemon
-sxhkd -c ~/.config/leftwm/sxhkd/sxhkdrc &
+#change your keyboard if you need it
+#setxkbmap -layout be
+keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
-#Personal keybinds
-#sxhkd -c ~/.config/leftwm/themes/current/sxhkd/sxhkdrc &
+if [ $keybLayout = "be" ]; then
+  cp ~/.config/leftwm/config-azerty.toml ~/.config/leftwm/config.toml
+fi
+
+# keybindings daemon
+if [ -d "$SCRIPTPATH/sxhkd" ] ; then
+  #put your personal keybinds here or delete the dir to use the standard keybinds
+  sxhkd -c ~/.config/leftwm/themes/current/sxhkd/sxhkdrc & 
+else
+  sxhkd -c ~/.config/leftwm/sxhkd/sxhkdrc &
+fi    
 
 # diversity of apps to start
 nm-applet &
