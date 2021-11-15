@@ -17,7 +17,7 @@ if [ $keybLayout = "be" ]; then
 fi
 
 # keybindings daemon
-if [ -d "$SCRIPTPATH/sxhkd" ] ; then
+if [ -f "$SCRIPTPATH/sxhkd/sxhkdrc" ] ; then
   #put your personal keybinds here or delete the dir to use the standard keybinds
   sxhkd -c ~/.config/leftwm/themes/current/sxhkd/sxhkdrc & 
 else
