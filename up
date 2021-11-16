@@ -8,19 +8,24 @@ if [ -f "/tmp/leftwm-theme-down" ]; then
 fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
-#change your keyboard if you need it
+#change your keyboard if you need it - azerty or qwerty
 #setxkbmap -layout be
 keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
 if [ $keybLayout = "be" ]; then
   cp ~/.config/leftwm/config-azerty.toml ~/.config/leftwm/config.toml
+else
+  cp ~/.config/leftwm/config-qwerty.toml ~/.config/leftwm/config.toml
 fi
 
 # keybindings daemon
+# put your personal keybinds inside your theme and use those
 if [ -f "$SCRIPTPATH/sxhkd/sxhkdrc" ] ; then
-  #put your personal keybinds here or delete the dir to use the standard keybinds
+  # check if there is a keybinds-folder inside your personal theme and use it
+  # to use the standard keybinds, delete the dir sxhkd inside your theme
   sxhkd -c ~/.config/leftwm/themes/current/sxhkd/sxhkdrc & 
 else
+  # standard keybinds
   sxhkd -c ~/.config/leftwm/sxhkd/sxhkdrc &
 fi    
 
