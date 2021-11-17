@@ -1,1 +1,1 @@
-# doublebar
+# Leftwm-theme doublebar
