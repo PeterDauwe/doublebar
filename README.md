@@ -11,7 +11,7 @@
 # Changed some stuff in up !!!!!!!!!!!!!
 	- config.toml will be changed according to your keyboard layout 
 	- if you have personal keybinds put them in sxhkd directory,
-		if not the standard will be.
+		if not the standard will be used.
 	- picom is put in it's own directory.
 	- background is changed on every login or reload.
 	- polybar is split into two bars : polybartop , polybarbottom.
