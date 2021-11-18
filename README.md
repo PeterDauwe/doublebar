@@ -17,7 +17,7 @@
 	- polybar is split into two bars : polybartop , polybarbottom.
 
 # Changes in template.liquid.
-	- deleted some stuff in this file. Only occupied tags are visible and the focused tag is 		between brackets.
+	- deleted some stuff in this file. Only occupied tags are visible and the focused tag is between brackets.
 
 # Changes in config.toml.
 	- move to tag and focus to tag has been replaced by one command
