@@ -31,7 +31,7 @@
 	
 # Themechanger.
 	- made a script in directory scripts : changetheme.sh.
-	This lets you in one go  : update, install and apply the theme of your choice.
+	This lets you in one go: update, install and apply the theme of your choice.
 
 
 Hope you like this, it was fun to make.
