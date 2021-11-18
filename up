@@ -1,6 +1,6 @@
-#!/bin/bash
-export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+#!/usr/bin/env bash
 
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # Down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
@@ -11,12 +11,14 @@ ln -s "$SCRIPTPATH"/down /tmp/leftwm-theme-down
 
 #change your keyboard if you need it - azerty or qwerty
 #setxkbmap -layout be
-###keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
+keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
-###if [ $keybLayout = "be" ]; then
+#if [ $keybLayout = "be" ]; then
 ###  cp "$SCRIPTPATH"/config/config-azerty.toml ~/.config/leftwm/config.toml
-###else
+#  leftwm-command "LoadTheme "$SCRIPTPATH"/config/config-azerty.toml"
+#else
 ###  cp "$SCRIPTPATH"/config/config-qwerty.toml ~/.config/leftwm/config.toml
+#  leftwm-command "LoadTheme "$SCRIPTPATH"/config/config-querty.toml"
 ###fi
 
 # keybindings daemon
