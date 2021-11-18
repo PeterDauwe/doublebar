@@ -1,6 +1,7 @@
 #!/bin/bash
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
+
 # Down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
     /tmp/leftwm-theme-down
@@ -10,13 +11,13 @@ ln -s "$SCRIPTPATH"/down /tmp/leftwm-theme-down
 
 #change your keyboard if you need it - azerty or qwerty
 #setxkbmap -layout be
-keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
+###keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
-if [ $keybLayout = "be" ]; then
-  cp "$SCRIPTPATH"/config/config-azerty.toml ~/.config/leftwm/config.toml
-else
-  cp "$SCRIPTPATH"/config/config-qwerty.toml ~/.config/leftwm/config.toml
-fi
+###if [ $keybLayout = "be" ]; then
+###  cp "$SCRIPTPATH"/config/config-azerty.toml ~/.config/leftwm/config.toml
+###else
+###  cp "$SCRIPTPATH"/config/config-qwerty.toml ~/.config/leftwm/config.toml
+###fi
 
 # keybindings daemon
 # put your personal keybinds inside your theme and use those
@@ -62,6 +63,8 @@ fi
 
 # Set the theme.toml config
 echo "LoadTheme "$SCRIPTPATH"/theme.toml" > $XDG_RUNTIME_DIR/leftwm/commands.pipe
+#echo "LoadTheme "$SCRIPTPATH"/theme.toml" > "$SCRIPTPATH"/test.txt
+
 
 # Set background
 if [ -x "$(command -v feh)" ]; then
