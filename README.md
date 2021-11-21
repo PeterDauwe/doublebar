@@ -16,10 +16,6 @@
 	- background is changed on every login or reload.
 	- polybar is split into two bars : polybartop , polybarbottom.
 
-# Changes in template.liquid.
-	- deleted some stuff in this file.
-	Only occupied tags are visible and the focused tag is between brackets.
-
 # Changes in config.toml.
 	- move to tag and focus to tag has been replaced by one command
 	   	[[keybind]]
@@ -28,11 +24,6 @@
 		modifier = ["modkey", "Shift"]
 		key = "1"
 	- scratchpad is added
-	
-# Themechanger.
-	- made a script in directory scripts : changetheme.sh.
-	This lets you in one go: update, install and apply the theme of your choice.
-
 
 Hope you like this, it was fun to make.
 
