@@ -1,6 +1,7 @@
 #!/bin/bash
-
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+#this is your scriptpath
+# echo $SCRIPTPATH
 
 # Down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
@@ -9,16 +10,39 @@ if [ -f "/tmp/leftwm-theme-down" ]; then
 fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
+########## This script makes the colors of your polybar and terminals#########
+sh $SCRIPTPATH/scripts/wal.sh
+##############################################################################
+
+#change your keyboard if you need it - azerty or qwerty
+#setxkbmap -layout be
+keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
+
+if [ $keybLayout = "be" ]; then
+  cp ~/.config/leftwm/config-azerty.toml ~/.config/leftwm/config.toml
+else
+  cp ~/.config/leftwm/config-qwerty.toml ~/.config/leftwm/config.toml
+fi
+
+leftwm-command "LoadTheme "$SCRIPTPATH"/config.toml"
+
 # keybindings daemon
 ######### PUT YOUR PERSONAL KEYBINDS INSIDE YOUR THEME AND ADD THOSE THE THE STANDARD KEYBINDS ######
 ######### JUST BE AWARE : DOUBLE KEYBINDS WILL RESULT IN A CRASH!!!!!!!! ##########
 if [ -f "$SCRIPTPATH/sxhkd/sxhkdrc-personal" ] ; then
   # check if there is a keybinds-folder inside your personal theme and use it
-  sxhkd -c  ~/.config/leftwm/sxhkd/sxhkdrc $SCRIPTPATH/sxhkd/sxhkdrc-personal &
+  sxhkd -c ~/.config/leftwm/sxhkd/sxhkdrc $SCRIPTPATH/sxhkd/sxhkdrc-personal &
 else
   # standard keybinds
-  sxhkd -c  ~/.config/leftwm/sxhkd/sxhkdrc &
-fi  
+  sxhkd -c ~/.config/leftwm/sxhkd/sxhkdrc &
+fi
+
+function run {
+  if ! pgrep -x $(basename $1 | head -c 15) 1>/dev/null;
+  then
+    $@&
+  fi
+}
 
 # diversity of apps to start
 nm-applet &
@@ -29,6 +53,7 @@ blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 volumeicon &
+run xfce4-clipman
 #conky -c ~/.config/leftwm/system-overview &
 #nitrogen --restore &
 #caffeine &
@@ -51,7 +76,7 @@ elif [ -x "$(command -v compton)" ]; then
   compton --config $HOME/.config/leftwm/themes/current/compton.conf &> /dev/null &
 fi
 
-#Set the theme.toml config
+# Set the theme.toml config
 leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
 
 # Set background

@@ -24,6 +24,10 @@ configuration {
   text-color: #eeeeee;
 }
 
+prompt {
+    background-color:               @transparent;
+    text-color:                     @foreground;
+}
 
 window {
     transparency:                   "real";
